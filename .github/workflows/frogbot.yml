@@ -16,11 +16,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Setup Java ☕
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '25'
 
       - name: Force Executable Permissions on Wrapper 🛠️
         run: chmod +x mvnw
@@ -34,4 +34,3 @@ jobs:
           JF_GIT_PROVIDER: github
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JF_REPOS_SELECTION_REPOS: "spring-boot-docker-libs-snapshot"
-          JF_MVN_OPTS: "-DskipTests -Dmaven.main.skip=true -Dmaven.test.skip=true -Ddependency-mediator.skip=true"
