@@ -34,3 +34,4 @@ jobs:
           JF_GIT_PROVIDER: github
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           JF_REPOS_SELECTION_REPOS: "spring-boot-docker-libs-snapshot"
+          JF_MVN_OPTS: "-DskipTests -Dmaven.main.skip=true -Dmaven.test.skip=true -Ddependency-mediator.skip=true"
