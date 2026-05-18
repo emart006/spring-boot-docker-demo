@@ -1,39 +1,45 @@
-name: "FrogBot Security Scan"
+name: "Frogbot Security Scan"
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [ "main" ]
 
+# 👇 CRITICAL: Grants write access to clear the 403 authorization blocks
 permissions:
-  pull-requests: write
-  contents: read
+  actions: read
+  contents: write         # Required to upload the SBOM to the Dependency Graph
+  security-events: write   # Required to upload SARIF results to Code Scanning Alerts
+  pull-requests: write     # Required if Frogbot needs to comment on Pull Requests
 
 jobs:
   frogbot-scan:
+    name: "JFrog Vulnerability Scan"
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout Code
+      - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Java ☕
+      - name: Set up Java Environment
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
           java-version: '25'
+          distribution: 'temurin'
+          cache: 'maven'
 
-      # 👇 Trick FrogBot into skipping Maven execution by masking the wrapper scripts
-      - name: Optimize Manifest Context for Scan 🧠
-        run: |
-          rm -f mvnw
-          rm -f mvnw.cmd
-
-      - name: Run FrogBot
-        uses: jfrog/frogbot@v2
+      - name: Run Frogbot Repository Scan
+        uses: jfrog/frogbot-action@v2
         env:
-          JF_URL: ${{ secrets.JF_URL }}
+          # JFrog Platform Credentials
+          JF_URL: https://solengemdemo.jfrog.io
           JF_USER: ${{ secrets.JF_USER }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-          JF_GIT_PROVIDER: github
+          JF_TOKEN: ${{ secrets.JF_PASSWORD }} # Your eyADF...mvn token stored securely
+          
+          # Git Credentials automatically managed by GitHub Actions
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JF_REPOS_SELECTION_REPOS: "spring-boot-docker-libs-snapshot"
+          JF_GIT_PROVIDER: github
+
+          # Tells Frogbot's internal Maven build to skip uploading code to Artifactory
+          # This keeps the scan focused purely on dependency tree vulnerability checks
+          # JF_MVN_OPTS: "-Dmaven.deploy.skip=true -DskipTests"
