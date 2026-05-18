@@ -13,15 +13,13 @@
 	<name>spring-boot-docker</name>
 	<description>Spring Boot Docker Demo</description>
 	<url/>
-	
-	<distributionManagement>
-		<snapshotRepository>
-			<id>spring-boot-docker-libs-snapshot</id>
-			<name>solengemdemo-spring-boot-docker-libs-snapshot-snapshots</name>
-			<url>https://solengemdemo.jfrog.io/artifactory/spring-boot-docker-libs-snapshot</url>
-		</snapshotRepository>
-	</distributionManagement>
-	
+        <distributionManagement>
+            <snapshotRepository>
+                <id>snapshots</id>
+                <name>solengemdemo-springbootdocker-libs-snapshot-snapshots</name>
+                <url>https://solengemdemo.jfrog.io/artifactory/springbootdocker-libs-snapshot</url>
+            </snapshotRepository>
+        </distributionManagement>
 	<licenses>
 		<license/>
 	</licenses>
