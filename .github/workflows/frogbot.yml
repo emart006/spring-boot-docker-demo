@@ -34,7 +34,7 @@ jobs:
           # JFrog Platform Credentials
           JF_URL: https://solengemdemo.jfrog.io
           JF_USER: ${{ secrets.JF_USER }}
-          JF_TOKEN: ${{ secrets.JF_PASSWORD }} # Your eyADF...mvn token stored securely
+          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
           
           # Git Credentials automatically managed by GitHub Actions
           JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
