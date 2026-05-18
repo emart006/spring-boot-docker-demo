@@ -14,6 +14,13 @@
 	<name/>
 	<description/>
 	<url/>
+        <distributionManagement>
+            <snapshotRepository>
+                <id>snapshots</id>
+                <name>solengemdemo-spring-boot-docker-libs-snapshot-snapshots</name>
+                <url>https://solengemdemo.jfrog.io/artifactory/spring-boot-docker-libs-snapshot</url>
+            </snapshotRepository>
+        </distributionManagement>
 	<licenses>
 		<license/>
 	</licenses>
