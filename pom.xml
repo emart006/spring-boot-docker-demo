@@ -10,13 +10,13 @@
 	<groupId>com.example</groupId>
 	<artifactId>spring-boot-docker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>spring-boot-docker</name>
+	<description>Spring Boot Docker Demo</description>
 	<url/>
 	
 	<distributionManagement>
 		<snapshotRepository>
-			<id>snapshots</id>
+			<id>spring-boot-docker-libs-snapshot</id>
 			<name>solengemdemo-spring-boot-docker-libs-snapshot-snapshots</name>
 			<url>https://solengemdemo.jfrog.io/artifactory/spring-boot-docker-libs-snapshot</url>
 		</snapshotRepository>
