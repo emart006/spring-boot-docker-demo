@@ -29,7 +29,7 @@ jobs:
           cache: 'maven'
 
       - name: Run Frogbot Repository Scan
-        uses: jfrog/frogbot-action@v2
+        uses: jfrog/frogbot@v2
         env:
           # JFrog Platform Credentials
           JF_URL: https://solengemdemo.jfrog.io
